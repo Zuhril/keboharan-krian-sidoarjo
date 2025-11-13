@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - Desa Keboharan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        /* Gaya dasar untuk konsistensi */
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Style untuk Tabel */
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #10b981; /* green-500 */
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+        tr:hover {
+            background-color: #f0fdf4; /* green-50 */
+        }
+    </style>
+ </head>
+ <body class="bg-gray-100 font-sans">
+  <header class="bg-green-700 text-white shadow-lg">
+   <div class="container mx-auto px-4 py-4">
+    <h1 class="text-3xl font-bold">Panel Admin Desa Keboharan</h1>
+    <p class="text-green-200">Manajemen Data Pengaduan Lokal</p>
+   </div>
+  </header>
+  <main class="py-12">
+   <div class="container mx-auto px-4">
+    <div class="bg-white p-6 rounded-lg shadow-xl">
+     <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800">Daftar Pengaduan Warga</h2>
+      <button onclick="loadData()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors"> Refresh Data </button>
+     </div>
+     <div class="overflow-x-auto">
+      <table class="min-w-full bg-white rounded-lg shadow">
+       <thead>
+        <tr>
+         <th>ID</th>
+         <th>Tanggal</th>
+         <th>Nama</th>
+         <th>Jenis Pengaduan</th>
+         <th>Isi Pengaduan</th>
+         <th>Aksi</th>
+        </tr>
+       </thead>
+       <tbody id="pengaduanTableBody">
+        </tbody>
+      </table>
+     </div>
+     <p id="noDataMessage" class="text-center text-gray-500 mt-8 hidden">Tidak ada data pengaduan yang tersimpan di LocalStorage.</p>
+    </div>
+   </div>
+  </main>
+  <script>
+        const LOCAL_STORAGE_KEY = 'pengaduanDesaKeboharan';
+        const tableBody = document.getElementById('pengaduanTableBody');
+        const noDataMessage = document.getElementById('noDataMessage');
+
+        // 1. Fungsi untuk mengambil data dari LocalStorage
+        function getPengaduanData() {
+            try {
+                const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch (error) {
+                console.error("Error reading from LocalStorage:", error);
+                return [];
+            }
+        }
+
+        // 2. Fungsi untuk menyimpan data ke LocalStorage
+        function savePengaduanData(data) {
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+                loadData(); // Muat ulang tabel setelah menyimpan
+            } catch (error) {
+                console.error("Error writing to LocalStorage:", error);
+                alert("Gagal menyimpan data ke LocalStorage.");
+            }
+        }
+
+        // 3. Fungsi untuk menghapus pengaduan
+        function deletePengaduan(idToDelete) {
+            if (!confirm(`Apakah Anda yakin ingin menghapus pengaduan dengan ID: ${idToDelete}?`)) {
+                return;
+            }
+
+            let data = getPengaduanData();
+            // Filter data, hanya menyisakan data yang ID-nya tidak sama dengan yang ingin dihapus
+            const newData = data.filter(item => item.id !== idToDelete);
+            
+            savePengaduanData(newData);
+            alert(`Pengaduan ID ${idToDelete} berhasil dihapus.`);
+        }
+
+        // 4. Fungsi untuk menampilkan data ke tabel
+        function loadData() {
+            const data = getPengaduanData();
+            tableBody.innerHTML = ''; // Kosongkan tabel
+
+            if (data.length === 0) {
+                noDataMessage.classList.remove('hidden');
+                return;
+            }
+            noDataMessage.classList.add('hidden');
+
+            data.forEach(item => {
+                const row = tableBody.insertRow();
+
+                // Format tanggal agar lebih mudah dibaca
+                const formattedDate = new Date(item.tanggal).toLocaleDateString('id-ID', {
+                    day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                });
+
+                row.innerHTML = `
+                    <td>${item.id.substring(0, 8)}...</td>
+                    <td>${formattedDate}</td>
+                    <td class="font-medium">${item.nama}</td>
+                    <td>${item.jenis_pengaduan}</td>
+                    <td class="max-w-xs overflow-hidden text-ellipsis whitespace-nowrap" title="${item.isi_pengaduan}">${item.isi_pengaduan}</td>
+                    <td>
+                        <button onclick="deletePengaduan('${item.id}')" class="bg-red-500 hover:bg-red-600 text-white text-sm py-1 px-3 rounded">
+                            Hapus
+                        </button>
+                    </td>
+                `;
+            });
+        }
+
+        // Panggil saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+ </body>
+</html>

@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Desa Keboharan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        .carousel-item {
+            display: none;
+        }
+        .carousel-item.active {
+            display: block;
+        }
+        .modal {
+            display: none;
+        }
+        .modal.show {
+            display: flex;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-green-50 font-sans"><header class="bg-green-700 text-white shadow-lg">
+   <div class="container mx-auto px-4 py-6">
+    <div class="flex items-center justify-between">
+     <div class="flex items-center space-x-4">
+      <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center"><span class="text-green-700 font-bold text-xl">🏛️</span>
+      </div>
+      <div>
+       <h1 id="nama-desa" class="text-2xl font-bold">Desa Keboharan</h1>
+       <p id="tagline-desa" class="text-green-200">Desa Maju, Sejahtera, dan Berbudaya</p>
+      </div>
+     </div>
+     <nav class="hidden md:flex space-x-6"><a href="#profil" class="hover:text-green-200 transition-colors">Profil</a> <a href="#berita" class="hover:text-green-200 transition-colors">Berita</a> <a href="#galeri" class="hover:text-green-200 transition-colors">Galeri</a> <button onclick="openModal()" class="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-lg text-white font-medium transition-colors">Pengaduan</button>
+     </nav>
+    </div>
+   </div>
+  </header><section id="profil" class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Profil Desa Keboharan</h2>
+    <div class="relative max-w-4xl mx-auto">
+     <div class="carousel-container bg-gray-100 rounded-lg overflow-hidden shadow-lg"><div class="carousel-item active">
+       <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/2 p-8">
+         <h3 class="text-2xl font-bold text-green-700 mb-4">Sejarah Desa</h3>
+         <p class="text-gray-600 leading-relaxed">Desa Keboharan didirikan pada tahun 1945 dan telah berkembang menjadi desa yang maju dengan berbagai potensi alam dan budaya yang kaya. Nama Keboharan berasal dari kata "Bohar" yang berarti mata air jernih.</p>
+        </div>
+        <div class="md:w-1/2 bg-green-100 flex items-center justify-center p-8">
+         <div class="text-6xl">
+          🏞️
+         </div>
+        </div>
+       </div>
+      </div><div class="carousel-item">
+       <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/2 p-8">
+         <h3 class="text-2xl font-bold text-green-700 mb-4">Visi &amp; Misi</h3>
+         <p class="text-gray-600 leading-relaxed mb-4"><strong>Visi:</strong> Mewujudkan Desa Keboharan yang maju, sejahtera, dan berbudaya.</p>
+         <p class="text-gray-600 leading-relaxed"><strong>Misi:</strong> Meningkatkan kesejahteraan masyarakat melalui pembangunan berkelanjutan dan pelestarian budaya lokal.</p>
+        </div>
+        <div class="md:w-1/2 bg-blue-100 flex items-center justify-center p-8">
+         <div class="text-6xl">
+          🎯
+         </div>
+        </div>
+       </div>
+      </div><div class="carousel-item">
+       <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/2 p-8">
+         <h3 class="text-2xl font-bold text-green-700 mb-4">Potensi Desa</h3>
+         <ul class="text-gray-600 space-y-2">
+          <li>• Pertanian padi dan sayuran organik</li>
+          <li>• Wisata alam dan budaya</li>
+          <li>• Kerajinan tangan tradisional</li>
+          <li>• Peternakan dan perikanan</li>
+         </ul>
+        </div>
+        <div class="md:w-1/2 bg-yellow-100 flex items-center justify-center p-8">
+         <div class="text-6xl">
+          🌾
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><button onclick="prevSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-colors"> <span class="text-gray-600 text-xl">‹</span> </button> <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full p-2 shadow-lg transition-colors"> <span class="text-gray-600 text-xl">›</span> </button> <div class="flex justify-center mt-4 space-x-2"><button onclick="goToSlide(0)" class="indicator w-3 h-3 bg-green-700 rounded-full"></button> <button onclick="goToSlide(1)" class="indicator w-3 h-3 bg-gray-300 rounded-full"></button> <button onclick="goToSlide(2)" class="indicator w-3 h-3 bg-gray-300 rounded-full"></button>
+     </div>
+    </div>
+   </div>
+  </section><section id="berita" class="py-12 bg-gray-50">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Berita Desa</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"><div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+      <div class="h-48 bg-green-200 flex items-center justify-center"><span class="text-4xl">📰</span>
+      </div>
+      <div class="p-6">
+       <h3 id="judul-berita" class="text-xl font-bold text-gray-800 mb-2">Pembangunan Jalan Desa Tahap II Dimulai</h3>
+       <p class="text-gray-600 text-sm mb-3">15 Januari 2024</p>
+       <p class="text-gray-700">Pemerintah desa memulai pembangunan jalan desa tahap kedua untuk meningkatkan akses transportasi warga...</p>
+      </div>
+     </div><div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+      <div class="h-48 bg-blue-200 flex items-center justify-center"><span class="text-4xl">🎉</span>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-bold text-gray-800 mb-2">Festival Budaya Desa Keboharan 2024</h3>
+       <p class="text-gray-600 text-sm mb-3">10 Januari 2024</p>
+       <p class="text-gray-700">Festival budaya tahunan akan diselenggarakan pada bulan Februari dengan berbagai pertunjukan seni tradisional...</p>
+      </div>
+     </div><div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+      <div class="h-48 bg-yellow-200 flex items-center justify-center"><span class="text-4xl">🌱</span>
+      </div>
+      <div class="p-6">
+       <h3 class="text-xl font-bold text-gray-800 mb-2">Program Pertanian Organik Sukses</h3>
+       <p class="text-gray-600 text-sm mb-3">5 Januari 2024</p>
+       <p class="text-gray-700">Program pertanian organik yang diluncurkan tahun lalu berhasil meningkatkan hasil panen petani lokal...</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><section id="galeri" class="py-12 bg-white">
+   <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Galeri Desa</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto"><div class="aspect-square bg-green-200 rounded-lg flex items-center justify-center hover:bg-green-300 transition-colors cursor-pointer"><span class="text-3xl">🏘️</span>
+     </div><div class="aspect-square bg-blue-200 rounded-lg flex items-center justify-center hover:bg-blue-300 transition-colors cursor-pointer"><span class="text-3xl">🌾</span>
+     </div><div class="aspect-square bg-yellow-200 rounded-lg flex items-center justify-center hover:bg-yellow-300 transition-colors cursor-pointer"><span class="text-3xl">🎭</span>
+     </div><div class="aspect-square bg-purple-200 rounded-lg flex items-center justify-center hover:bg-purple-300 transition-colors cursor-pointer"><span class="text-3xl">🏞️</span>
+     </div><div class="aspect-square bg-red-200 rounded-lg flex items-center justify-center hover:bg-red-300 transition-colors cursor-pointer"><span class="text-3xl">🚜</span>
+     </div><div class="aspect-square bg-indigo-200 rounded-lg flex items-center justify-center hover:bg-indigo-300 transition-colors cursor-pointer"><span class="text-3xl">🎪</span>
+     </div><div class="aspect-square bg-pink-200 rounded-lg flex items-center justify-center hover:bg-pink-300 transition-colors cursor-pointer"><span class="text-3xl">🌸</span>
+     </div><div class="aspect-square bg-teal-200 rounded-lg flex items-center justify-center hover:bg-teal-300 transition-colors cursor-pointer"><span class="text-3xl">🎨</span>
+     </div>
+    </div>
+   </div>
+  </section><footer class="bg-gray-800 text-white py-8">
+   <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-8">
+     <div>
+      <h3 class="text-xl font-bold mb-4">Kontak Desa</h3>
+      <p id="alamat-desa" class="text-gray-300 mb-2">Jl. Raya Keboharan No. 123, Kec. Keboharan</p>
+      <p class="text-gray-300 mb-2">Telepon: (021) 123-4567</p>
+      <p class="text-gray-300">Email: info@desakeboharan.id</p>
+     </div>
+     <div>
+      <h3 class="text-xl font-bold mb-4">Jam Pelayanan</h3>
+      <p class="text-gray-300 mb-2">Senin - Jumat: 08:00 - 16:00</p>
+      <p class="text-gray-300 mb-2">Sabtu: 08:00 - 12:00</p>
+      <p class="text-gray-300">Minggu: Tutup</p>
+     </div>
+     <div>
+      <h3 class="text-xl font-bold mb-4">Media Sosial</h3>
+      <div class="flex space-x-4"><a href="#" class="text-gray-300 hover:text-white transition-colors">Facebook</a> <a href="#" class="text-gray-300 hover:text-white transition-colors">Instagram</a> <a href="#" class="text-gray-300 hover:text-white transition-colors">Twitter</a>
+      </div>
+     </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+     <p class="text-gray-400">© 2024 Desa Keboharan. Semua hak dilindungi.</p>
+    </div>
+   </div>
+  </footer><div id="pengaduanModal" class="modal fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
+   <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4 max-h-[90%] overflow-y-auto">
+    <div class="flex justify-between items-center mb-4">
+     <h3 class="text-xl font-bold text-gray-800">Form Pengaduan</h3><button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+    </div>
+    <form id="pengaduanForm" class="space-y-4">
+     <div><label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label> <input type="text" id="nama" name="nama" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+     </div>
+     <div><label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label> <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+     </div>
+     <div><label for="telepon" class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon</label> <input type="tel" id="telepon" name="telepon" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+     </div>
+     <div><label for="jenis_pengaduan" class="block text-sm font-medium text-gray-700 mb-1">Jenis Pengaduan</label> <select id="jenis_pengaduan" name="jenis_pengaduan" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"> <option value="">Pilih jenis pengaduan</option> <option value="infrastruktur">Infrastruktur</option> <option value="pelayanan">Pelayanan Publik</option> <option value="lingkungan">Lingkungan</option> <option value="sosial">Sosial Kemasyarakatan</option> <option value="lainnya">Lainnya</option> </select>
+     </div>
+     <div><label for="isi_pengaduan" class="block text-sm font-medium text-gray-700 mb-1">Isi Pengaduan</label> <textarea id="isi_pengaduan" name="isi_pengaduan" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Jelaskan pengaduan Anda secara detail..."></textarea>
+     </div>
+     <div class="flex space-x-3 pt-4"><button type="submit" id="submitBtn" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md font-medium transition-colors"> Kirim Pengaduan </button> <button type="button" onclick="closeModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded-md font-medium transition-colors"> Batal </button>
+     </div>
+    </form><div id="successMessage" class="hidden mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md">
+     <p class="font-medium">Pengaduan berhasil dikirim!</p>
+     <p class="text-sm">Terima kasih atas pengaduan Anda. Kami akan menindaklanjuti dalam 1-3 hari kerja.</p>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('bg-green-700', i === index);
+                indicator.classList.toggle('bg-gray-300', i !== index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+
+        // Modal functionality
+        function openModal() {
+            document.getElementById('pengaduanModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('pengaduanModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+            document.getElementById('pengaduanForm').reset();
+            document.getElementById('successMessage').classList.add('hidden');
+        }
+
+        // Data Storage using LocalStorage
+        const LOCAL_STORAGE_KEY = 'pengaduanDesaKeboharan';
+
+        function getPengaduanData() {
+            const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+
+        function savePengaduanData(data) {
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+        }
+
+        // Form submission (MODIFIED FOR LOCALSTORAGE)
+        document.getElementById('pengaduanForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Mengirim...';
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const pengaduanData = {
+                id: Date.now().toString(),
+                nama: formData.get('nama'),
+                email: formData.get('email'),
+                telepon: formData.get('telepon'),
+                jenis_pengaduan: formData.get('jenis_pengaduan'),
+                isi_pengaduan: formData.get('isi_pengaduan'),
+                tanggal: new Date().toISOString()
+            };
+
+            try {
+                // Get existing data
+                const existingData = getPengaduanData();
+                
+                // Add new data (Enforcing the 999 limit, if desired)
+                if (existingData.length >= 999) {
+                    alert('Batas maksimum 999 pengaduan telah tercapai di penyimpanan lokal. Silakan hubungi kantor desa secara langsung.');
+                } else {
+                    existingData.push(pengaduanData);
+                    savePengaduanData(existingData);
+
+                    // Simulate a successful save
+                    document.getElementById('successMessage').classList.remove('hidden');
+                    this.reset();
+                }
+            } catch (error) {
+                // Handle LocalStorage error (e.g., storage full)
+                alert('Terjadi kesalahan saat menyimpan pengaduan di penyimpanan lokal. Silakan coba lagi atau hubungi kantor desa.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Element SDK setup
+        const defaultConfig = {
+            nama_desa: "Desa Keboharan",
+            tagline_desa: "Desa Maju, Sejahtera, dan Berbudaya",
+            judul_berita: "Pembangunan Jalan Desa Tahap II Dimulai",
+            alamat_desa: "Jl. Raya Keboharan No. 123, Kec. Keboharan",
+            background_color: "#f0fdf4",
+            header_color: "#15803d",
+            text_color: "#374151",
+            accent_color: "#eab308",
+            surface_color: "#ffffff"
+        };
+
+        async function onConfigChange(config) {
+            // Update text content
+            document.getElementById('nama-desa').textContent = config.nama_desa || defaultConfig.nama_desa;
+            document.getElementById('tagline-desa').textContent = config.tagline_desa || defaultConfig.tagline_desa;
+            document.getElementById('judul-berita').textContent = config.judul_berita || defaultConfig.judul_berita;
+            document.getElementById('alamat-desa').textContent = config.alamat_desa || defaultConfig.alamat_desa;
+
+            // Update colors
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+            const headerColor = config.header_color || defaultConfig.header_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const accentColor = config.accent_color || defaultConfig.accent_color;
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+
+            document.body.style.backgroundColor = backgroundColor;
+            document.querySelector('header').style.backgroundColor = headerColor;
+            document.querySelectorAll('.bg-white').forEach(el => el.style.backgroundColor = surfaceColor);
+            document.querySelectorAll('.text-gray-800, .text-gray-700').forEach(el => el.style.color = textColor);
+            document.querySelector('button[onclick="openModal()"]').style.backgroundColor = accentColor;
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.header_color || defaultConfig.header_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ header_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.accent_color || defaultConfig.accent_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ accent_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.setConfig({ surface_color: value });
+                            }
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["nama_desa", config.nama_desa || defaultConfig.nama_desa],
+                ["tagline_desa", config.tagline_desa || defaultConfig.tagline_desa],
+                ["judul_berita", config.judul_berita || defaultConfig.judul_berita],
+                ["alamat_desa", config.alamat_desa || defaultConfig.alamat_desa]
+            ]);
+        }
+
+        // Initialize SDKs
+        async function initializeApp() {
+            try {
+                // Removed Data SDK initialization
+                
+                if (window.elementSdk) {
+                    await window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange,
+                        mapToCapabilities,
+                        mapToEditPanelValues
+                    });
+                }
+            } catch (error) {
+                console.error("Failed to initialize SDKs:", error);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99dab310d5e5a24f',t:'MTc2Mjk5OTQ3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
